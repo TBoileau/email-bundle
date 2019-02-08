@@ -17,6 +17,7 @@ use TBoileau\Bundle\EmailBundle\Builder\MessageBuilderInterface;
  *
  * @package TBoileau\Bundle\EmailBundle\Email
  * @author Thomas Boileau <t-boileau@email.com>
+ * @codeCoverageIgnore
  */
 abstract class AbstractEmail implements EmailInterface
 {
