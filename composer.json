@@ -1,0 +1,33 @@
+{
+    "name": "tboileau/email-bundle",
+    "description": "Symfony EmailBundle simplifies the management of your email sending.",
+    "type": "symfony-bundle",
+    "require": {
+        "php": ">=7.1.3",
+        "symfony/dependency-injection": "^3.4|^4.0",
+        "symfony/http-kernel": "^3.4|^4.0",
+        "symfony/yaml": "^3.4|^4.0",
+        "symfony/swiftmailer-bundle": "^3.2"
+    },
+    "require-dev": {
+        "symfony/phpunit-bridge": "^3.4|^4.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Thomas Boileau",
+            "email": "t-boileau@email.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "TBoileau\\Bundle\\EmailBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TBoileau\\Bundle\\EmailBundle\\Tests\\": "tests/"
+        }
+    }
+}
