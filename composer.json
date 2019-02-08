@@ -7,7 +7,8 @@
         "symfony/dependency-injection": "^3.4|^4.0",
         "symfony/http-kernel": "^3.4|^4.0",
         "symfony/yaml": "^3.4|^4.0",
-        "symfony/swiftmailer-bundle": "^3.2"
+        "symfony/swiftmailer-bundle": "^3.2",
+        "symfony/options-resolver": "^3.4|^4.0"
     },
     "require-dev": {
         "symfony/phpunit-bridge": "^3.4|^4.0"
