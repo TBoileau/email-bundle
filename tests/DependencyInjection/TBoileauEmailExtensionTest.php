@@ -7,28 +7,28 @@
  * with this source code in the file LICENSE.
  */
 
-namespace TBoileau\Bundle\FormHandlerBundle\Tests\DependencyInjection;
+namespace TBoileau\Bundle\EmailBundle\Tests\DependencyInjection;
 
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
-use TBoileau\Bundle\FormHandlerBundle\Config\HandlerConfig;
-use TBoileau\Bundle\FormHandlerBundle\Config\HandlerConfigInterface;
-use TBoileau\Bundle\FormHandlerBundle\DependencyInjection\TBoileauFormHandlerExtension;
-use TBoileau\Bundle\FormHandlerBundle\Factory\ManagerFactoryInterface;
-use TBoileau\Bundle\FormHandlerBundle\Manager\HandlerManager;
-use TBoileau\Bundle\FormHandlerBundle\Manager\HandlerManagerInterface;
+use TBoileau\Bundle\EmailBundle\Builder\MessageBuilder;
+use TBoileau\Bundle\EmailBundle\Builder\MessageBuilderInterface;
+use TBoileau\Bundle\EmailBundle\DependencyInjection\TBoileauEmailExtension;
+use TBoileau\Bundle\EmailBundle\Factory\MailerFactoryInterface;
+use TBoileau\Bundle\EmailBundle\Mailer\Mailer;
+use TBoileau\Bundle\EmailBundle\Mailer\MailerInterface;
 
 /**
- * Class TBoileauFormHandlerExtensionTest
+ * Class TBoileauEmailExtensionTest
  *
- * @package TBoileau\Bundle\FormHandlerBundle\Tests\DependencyInjection
+ * @package TBoileau\Bundle\EmailBundle\Tests\DependencyInjection
  * @author Thomas Boileau <t-boileau@email.com>
  */
-class TBoileauFormHandlerExtensionTest extends TestCase
+class TBoileauEmailExtensionTest extends TestCase
 {
     /**
-     * @var TBoileauFormHandlerExtension|null
+     * @var TBoileauEmailExtension|null
      */
     private $extension;
 
@@ -42,7 +42,7 @@ class TBoileauFormHandlerExtensionTest extends TestCase
      */
     protected function setUp()
     {
-        $this->extension = new TBoileauFormHandlerExtension();
+        $this->extension = new TBoileauEmailExtension();
         $this->container = new ContainerBuilder(new ParameterBag());
         $this->extension->load([], $this->container);
     }
@@ -74,18 +74,18 @@ class TBoileauFormHandlerExtensionTest extends TestCase
     public function provideServiceId(): \Generator
     {
         yield [
-            "t_boileau.form_handler.manager_factory",
-            ManagerFactoryInterface::class
+            "t_boileau.email.mailer_factory",
+            MailerFactoryInterface::class
         ];
 
         yield [
-            HandlerManager::class,
-            HandlerManagerInterface::class
+            Mailer::class,
+            MailerInterface::class
         ];
 
         yield [
-            HandlerConfig::class,
-            HandlerConfigInterface::class
+            MessageBuilder::class,
+            MessageBuilderInterface::class
         ];
     }
 }

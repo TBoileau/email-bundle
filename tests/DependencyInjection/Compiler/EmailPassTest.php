@@ -15,9 +15,8 @@ use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
 use TBoileau\Bundle\EmailBundle\DependencyInjection\Compiler\EmailPass;
 use TBoileau\Bundle\EmailBundle\DependencyInjection\TBoileauEmailExtension;
-use TBoileau\Bundle\EmailBundle\Mailer\MailerInterface;
+use TBoileau\Bundle\EmailBundle\Email\EmailInterface;
 use TBoileau\Bundle\EmailBundle\Tests\Email\FooEmail;
-use TBoileau\Bundle\EmailBundle\Tests\Handler\FooHandler;
 
 /**
  * Class EmailPassTest
@@ -48,10 +47,10 @@ class EmailPassTest extends TestCase
 
         (new TBoileauEmailExtension())->load([], $this->container);
 
-        $handlerDefinition = new Definition(FooEmail::class);
-        $handlerDefinition->setTags(["t_boileau.email" => []]);
+        $emailDefinition = new Definition(FooEmail::class);
+        $emailDefinition->setTags(["t_boileau.email" => []]);
 
-        $this->container->setDefinition(FooHandler::class, $handlerDefinition);
+        $this->container->setDefinition(FooEmail::class, $emailDefinition);
 
         $this->emailPass->process($this->container);
     }
@@ -67,6 +66,6 @@ class EmailPassTest extends TestCase
 
     public function testSuccessfulProcess()
     {
-        $this->assertInstanceOf(MailerInterface::class, $this->container->get(FooEmail::class));
+        $this->assertInstanceOf(EmailInterface::class, $this->container->get(FooEmail::class));
     }
 }
