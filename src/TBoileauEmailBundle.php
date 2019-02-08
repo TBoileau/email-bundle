@@ -9,7 +9,9 @@
 
 namespace TBoileau\Bundle\EmailBundle;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use TBoileau\Bundle\EmailBundle\DependencyInjection\Compiler\EmailPass;
 
 /**
  * Class TBoileauEmailBundle
@@ -20,5 +22,11 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class TBoileauEmailBundle extends Bundle
 {
-
+    /**
+     * @inheritdoc
+     */
+    public function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new EmailPass());
+    }
 }
