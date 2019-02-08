@@ -1,0 +1,15 @@
+services:
+    t_boileau.email.mailer_factory:
+        class: TBoileau\Bundle\EmailBundle\Factory\MailerFactory
+        autowire: true
+
+    TBoileau\Bundle\EmailBundle\Mailer\Mailer:
+        autowire: true
+
+    TBoileau\Bundle\EmailBundle\Builder\MessageBuilder: ~
+
+    TBoileau\Bundle\EmailBundle\Mailer\MailerInterface: '@TBoileau\Bundle\EmailBundle\Mailer\Mailer'
+
+    TBoileau\Bundle\EmailBundle\Factory\MailerFactoryInterface: '@t_boileau.email.mailer_factory'
+
+    TBoileau\Bundle\EmailBundle\Builder\MessageBuilderInterface: '@TBoileau\Bundle\EmailBundle\Builder\MessageBuilder'
